@@ -31,6 +31,20 @@ Con python y trabajando en Django, la herramienta equivalente es pip (PyPI) y lo
 
 ![Sin titulo](Imagenes_T2/6.png)
 
+Además creo el archivo requirements.txt que contiene lo necesario para que esto funcione correctamente, para ello uso:
+
+    pip list
+
+Y el contenido de este archivo es:
+
+    Django==1.10.2
+    argparse==1.2.1
+    wsgiref==0.1.2
+    pip==(1.5.4)
+    setuptools==(2.2)
+
+Este archivo puede verse [aquí](https://github.com/rubenjo7/empresas_IV/blob/master/requirements.txt).
+
 ###5. Automatizar con grunt y docco (o algún otro sistema) la generación de documentación de la librería que se cree. Previamente, por supuesto, habrá que documentar tal librería.
 
 Para documentar la aplicación python, he utilizado epidoc.
