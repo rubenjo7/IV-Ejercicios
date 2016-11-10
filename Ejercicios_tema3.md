@@ -1,5 +1,5 @@
-<h1>EJERCICIOS TEMA 2</h1>
-<h2>Ruben Jimenez Ortega</h2>
+<h1>EJERCICIOS TEMA 3</h1>
+<h2>Rubén Jiménez Ortega</h2>
 
 ###1. Darse de alta en algún servicio PaaS tal como Heroku, Nodejitsu, BlueMix u OpenShift.
 
