@@ -67,114 +67,88 @@ __OpenShitf__:
 
 ###3. Realizar una app en express (o el lenguaje y marco elegido) que incluya variables como en el caso anterior.
 
-He elegido python y Django. Para poder utilizar variables REST, Django nos da la opción de usar el FrameWork djangorestframework. Para este ejercicio he continuado con el ejemplo de Empresas del tema 2, la nueva aplicación se encuentra alojada en el siguiente [repositorio](https://github.com/rubenjo7/empresas_IV).
+He elegido python y Flask. La aplicación muestra un mensaje de bienvenida en el menú inicial. Si accedemos a la ruta, por ejemplo, /user/ruben mostrará un mensaje diciendo: "user ruben"
 
-Los pasos que he seguido son:
+    from flask import Flask, render_template
+    import os
 
-1. Crear entorno de pruebas:
+    app = Flask(__name__)
 
-        virtualenv Pruebas
-        source Pruebas/bin/activate
+    @app.route('/')
+    def home():
+        return render_template('layout.html')
 
-2. Instalo las dependencias:
+    @app.route('/user/<username>')
+    def show_user_profile(username):
+        # show the user profile for that user
+        return 'User %s' % username
 
-        pip install django
-        pip install djangorestframework
+    @app.errorhandler(404)
+    def page_not_found(e):
+        return render_template('404.html'), 404
 
-3. Creo el proyecto y la aplicación:
+    if __name__ == '__main__':
+        port=int(os.environ.get('PORT',2020))
+        #app.run(debug=True)
+        app.run(host='0.0.0.0', port=port)
 
-        django-admin.py startproject EjerciciosIV
-        python manage.py startapp Empresa
-
-4. Añado restFramewokr y aplicación al proyecto en *settings.py*:
-
-        INSTALLED_APPS = (
-            'django.contrib.admin',
-            'django.contrib.auth',
-            'django.contrib.contenttypes',
-            'django.contrib.sessions',
-            'django.contrib.messages',
-            'django.contrib.staticfiles',
-            'rest_framework',
-            'Empresa',
-        )
-
-5. Añado la url de la aplicación a las urls del proyecto:
-
-        urlpatterns = [
-            url(r'^admin/', include(admin.site.urls)),
-            url(r'^', include('Empresa.urls')),
-        ]
-
-6. Creo los modelos con los que voy a trabajar en models.py:
-
-7. Migración y modelado de la base de datos:
-
-        python manage.py makemigrations snippets
-        python manage.py migrate
-
-8. Crear clases para las instancias de empresa en formato Json:
-
-9. Creamos el contenido:
-
-![Sin titulo](Imagenes_T3/15.png)
-
-10. Creo vistas regulares para Django con la clase:
-
-    10.1. Los primero es crear una subclase HttpResponse que pueda renderizar cualquier dato a formato Json.
-
-    10.2. Después creo las funcionalidades principales de nuestra API que serán, listar empresas o crearlas. Además, también añado funcionalidades para recuperar, actualizar o borrar una empresa.
-
-11. Añado estas vistas, a las rutas de la aplicación. Creo el fichero urls.py y añado lo siguiente:
-
-        from django.conf.urls import url
-        from Empresa import views
-
-        urlpatterns = [
-            url(r'^Empresa/$', views.Empresa_lista),
-            url(r'^Empresa/(?P<pk>[0-9]+)/$', views.Empresa_detalle),
-        ]
-
-12. Comprobamos el funcionamiento:
-
-Llegados a este punto, podemos hacer una prueba sobre las vistas, para ello ponemos en marcha el servidor:
-
-    python manage.py runserver
-
-![Sin titulo](Imagenes_T3/16.png)
+El repositorio de la aplicación se puede consultar [aquí](https://github.com/rubenjo7/Ejercicio3-Tema3).
 
 ###4. Crear pruebas para las diferentes rutas de la aplicación.
 
-Las rutas que he creado para la aplicación Empresa_mejorada son las indicadas en el ejercicio anterior. Ahora vamos a testear 2 de ellas.
+Para hacer los test, el contenido del fichero test.py es el siguiente:
 
-- La primera ruta que vamos a probar es /Empresas/ que devuelve un listado en formato JSON de todas las empresas registradas en la aplicación.
-- La siguiente ruta que voy a probar es /Empresa/n que lo que devuelve es la empresa n-esima que haya resgistrada en la aplicación.
+    import unittest
+    import os
+    import Ejer3
+    from flask_testing import TestCase
+    import tempfile
 
-![Sin titulo](Imagenes_T3/17.png)
+    class ejercicioTestCase(unittest.TestCase):
+
+        def setUp(self):
+            self.db_fd, Ejer3.app.config['DATABASE'] = tempfile.mkstemp()
+            Ejer3.app.config['TESTING'] = True
+            self.app = Ejer3.app.test_client()
+
+        def tearDown(self):
+            os.close(self.db_fd)
+            os.unlink(Ejer3.app.config['DATABASE'])
+
+        def test_home_status_code(self):
+            result = self.app.get('/')
+            self.assertEqual(result.status_code, 200)
+
+        def test_name_status_code(self):
+            result = self.app.get('/user/ruben')
+            self.assertEqual(result.status_code, 200)
+
+    if __name__ == '__main__':
+        unittest.main()
+
+Los test estén hechos para la parte del menú inicial y para la parte de los usuarios. En la siguiente captura muestro que los test funcionan correctamente:
+
+![Sin titulo](Imagenes_T3/15.png)
+
+Los test se pueden consultar [aquí](https://github.com/rubenjo7/Ejercicio3-Tema3/blob/master/test.py).
 
 ###5. Instalar y echar a andar tu primera aplicación en Heroku.
 
-1. Heroku necesita para funcionar es un archivo de configuración llamado Procfile, con el siguiente contenido:
+Creamos nuestro proyecto con
 
-        web: gunicorn EjerciciosIV.wsgi --log-file -
+    create --buildpack heroku/python.
 
-2. Para utilizar heroku de forma remota existe una herramienta llamada heroku toolbet, escogemos la opción de mi sistema operativo (UBUNTU) para realizar la instalación.
+Posteriormente nos queda realizar un
 
-3. Subimos el proyecto a heroku. Para poder conectar a heroku a través de su toolbet debemos abrir nuestra terminal y escribir lo siguiente.
+    git push heroku master.
 
-        heroku login
+Para desplegarlo en Heroku crearemos un proyecto, posteriormente, lo sincronizaremos con el repositorio de github donde se encuentre la aplicación, una vez lo tengamos sincronizado habilitaremos la opción de despliegue automático con la que cada vez que hagamos un push a nuestro repositorio de github, automáticamente se desplegará en Heroku:
 
-      Una vez lo hagamos, nos pedirá nuestras credenciales de heroku, introduzco mi email y password, si todo ha ido bien nos dirá Authentication successful.
+![Sin titulo](Imagenes_T3/16.png)
 
-![Sin titulo](Imagenes_T3/18.png)
+También esta la opción de hacerlo de forma manual:
 
-4. Una vez dentro, lo siguiente es crear un enlace al repositorio que Heroku nos ofrece para alojar nuestra aplicación:
-
-![Sin titulo](Imagenes_T3/19.png)
-
-5. Por último tenemos que hacer push al repositorio de Heroku:
-
-![Sin titulo](Imagenes_T3/20.png)
+![Sin titulo](Imagenes_T3/17.png)
 
 ###6. Usar como base la aplicación de ejemplo de heroku y combinarla con la aplicación en node que se ha creado anteriormente. Probarla de forma local con foreman. Al final de cada modificación, los tests tendrán que funcionar correctamente; cuando se pasen los tests, se puede volver a desplegar en heroku.
 
@@ -182,25 +156,30 @@ Las rutas que he creado para la aplicación Empresa_mejorada son las indicadas e
 
         pip install foreman
 
+2. En el directorio donde está Procfile usamos
 
-###7. Haz alguna modificación a tu aplicación en node.js para Heroku, sin olvidar añadir los tests para la nueva funcionalidad, y configura el despliegue automático a Heroku usando Snap CI o alguno de los otros servicios, como Codeship, mencionados en StackOverflow
+        foreman start  
 
-Los test están [aquí](https://github.com/rubenjo7/Empresa_mejorado/blob/master/Empresa/tests.py). Son los que he comentado en ejercicios anteriores.
+Nuestra aplicación debe funcionar correctamente.
 
-Para configurar el despliegue automático utilizo Travis CI, diciéndole a Heroku que no despliegue hasta pasar los test:
+![Sin titulo](Imagenes_T3/20.png)
 
 ![Sin titulo](Imagenes_T3/21.png)
 
-Una vez guardada la configuración,si todo esta correcto, el pipeline saltará solo de un stage a otro hasta completar el despliegue
+###7. Haz alguna modificación a tu aplicación en node.js para Heroku, sin olvidar añadir los tests para la nueva funcionalidad, y configura el despliegue automático a Heroku usando Snap CI o alguno de los otros servicios, como Codeship, mencionados en StackOverflow
+
+Para configurar el despliegue automático utilizo Travis CI, diciéndole a Heroku que no despliegue hasta pasar los test:
 
 ![Sin titulo](Imagenes_T3/22.png)
 
-[![Build Status](https://snap-ci.com/rubenjo7/Empresa_mejorado/branch/master/build_image)](https://snap-ci.com/rubenjo7/Empresa_mejorado/branch/master)
+De esta forma Heroku cargará las novedades de nuestra aplicación sólo cuando se hayan realizado los tests de forma correcta.
 
 ###8. Preparar la aplicación con la que se ha venido trabajando hasta este momento para ejecutarse en un PaaS, el que se haya elegido.
 
-Llegados a este punto, la aplicación ya esta lista para su despliegue en Heroku. Este puede llevarse acabo mediante:
+Llegados a este punto, la aplicación ya esta lista para su despliegue en Heroku. Este puede llevarse acabo de forma manual o de forma automática, de las dos formas vale.
 
-    git push heroku master
+![Sin titulo](Imagenes_T3/19.png)
 
-![Sin titulo](Imagenes_T3/23.png)
+![Sin titulo](Imagenes_T3/18.png)
+
+[Aquí](https://ejercicio3iv.herokuapp.com/) se puede consultar el correcto funcionamiento de la pequeña aplicación.
