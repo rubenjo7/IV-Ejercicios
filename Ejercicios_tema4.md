@@ -139,13 +139,13 @@ Pasos para realizar una imagen persistente:
 
 1. Localizar la ID de la maquina que deseamos commitear:
 
-![Sin titulo](Imagenes_T4/20.png)
+    ![Sin titulo](Imagenes_T4/20.png)
 
 2. Comprobar que la ID es correcta:
 
         sudo docker inspect ID  
 
-![Sin titulo](Imagenes_T4/21.png)
+    ![Sin titulo](Imagenes_T4/21.png)
 
 3. Localizar la ID completa de la imagen, buscando en el fichero json resultado de la instrución anterior el campo ID.
 
@@ -157,7 +157,7 @@ Pasos para realizar una imagen persistente:
 
         sudo docker images
 
-![Sin titulo](Imagenes_T4/22.png)
+    ![Sin titulo](Imagenes_T4/22.png)
 
 
 ###10. Crear una imagen con las herramientas necesarias para el proyecto de la asignatura sobre un sistema operativo de tu elección.

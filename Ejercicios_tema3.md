@@ -7,63 +7,63 @@ __Heroku__:
 
 1. Rellenar el formulario de registro:
 
-![Sin titulo](Imagenes_T3/1.png)
+    ![Sin titulo](Imagenes_T3/1.png)
 
 2. Confirmamos el registro mediante un enlace enviado a nuestro correo:
 
-![Sin titulo](Imagenes_T3/2.png)
+    ![Sin titulo](Imagenes_T3/2.png)
 
 3. Una vez confirmado el correo vemos lo siguiente:
 
-![Sin titulo](Imagenes_T3/3.png)
+    ![Sin titulo](Imagenes_T3/3.png)
 
 4. Finalmente, podemos acceder a la interfaz de Heroku :
 
-![Sin titulo](Imagenes_T3/4.png)
+    ![Sin titulo](Imagenes_T3/4.png)
 
 __OpenShitf__:
 
 1. Nos logueamos con nuestra cuenta de Github:
 
-![Sin titulo](Imagenes_T3/5.png)
+    ![Sin titulo](Imagenes_T3/5.png)
 
 2. Autorizamos la aplicación:
 
-![Sin titulo](Imagenes_T3/6.png)
+    ![Sin titulo](Imagenes_T3/6.png)
 
 3. Insertamos los datos necesarios:
 
-![Sin titulo](Imagenes_T3/7.png)
+    ![Sin titulo](Imagenes_T3/7.png)
 
 4. Ya estamos preparados para empezar:
 
-![Sin titulo](Imagenes_T3/8.png)
+    ![Sin titulo](Imagenes_T3/8.png)
 
 ###2. Crear una aplicación en OpenShift o en algún otro PaaS en el que se haya dado uno de alta. Realizar un despliegue de prueba usando alguno de los ejemplos.
 
 1. Creamos la aplicación:
 
-![Sin titulo](Imagenes_T3/9.png)
+    ![Sin titulo](Imagenes_T3/9.png)
 
 2. Ponemos el nombre que queramos:
 
-![Sin titulo](Imagenes_T3/10.png)
+    ![Sin titulo](Imagenes_T3/10.png)
 
 3. En la interfaz de OpenShift, buscamos el apartado Instant App y seleccionamos cualquiera, en mi caso yo elegiré la primera opción como prueba:
 
-![Sin titulo](Imagenes_T3/11.png)
+    ![Sin titulo](Imagenes_T3/11.png)
 
 4. Ponemos los requisitos que nos piden a nuestro gusto:
 
-![Sin titulo](Imagenes_T3/12.png)
+    ![Sin titulo](Imagenes_T3/12.png)
 
 5. Vemos que ya esta creada nuestra aplicación:
 
-![Sin titulo](Imagenes_T3/13.png)
+    ![Sin titulo](Imagenes_T3/13.png)
 
 6. Y listo, ya podemos empezar a personalizar la aplicación:
 
-![Sin titulo](Imagenes_T3/14.png)
+    ![Sin titulo](Imagenes_T3/14.png)
 
 ###3. Realizar una app en express (o el lenguaje y marco elegido) que incluya variables como en el caso anterior.
 
