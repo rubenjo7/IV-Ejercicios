@@ -31,25 +31,25 @@ Y compruebo la versión que he instalado:
 
         vagrant box add debian https://github.com/holms/vagrant-jessie-box/releases/download/Jessie-v0.1/Debian-jessie-amd64-netboot.box
 
-![Sin titulo](Imagenes_T6/1.png)
+    ![Sin titulo](Imagenes_T6/1.png)
 
 3. Creamos un fichero Vagrant:
 
         vagrant init debian
 
-![Sin titulo](Imagenes_T6/2.png)
+    ![Sin titulo](Imagenes_T6/2.png)
 
 4. Iniciamos la máquina:
 
         vagrant up
 
-![Sin titulo](Imagenes_T6/3.png)
+    ![Sin titulo](Imagenes_T6/3.png)
 
 5. Conectamos con la máquina:
 
         vagrant ssh
 
-![Sin titulo](Imagenes_T6/4.png)
+    ![Sin titulo](Imagenes_T6/4.png)
 
 ###5. Crear un script para provisionar `nginx` o cualquier otro servidor web que pueda ser útil para alguna otra práctica.
 

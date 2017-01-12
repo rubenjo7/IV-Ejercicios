@@ -15,21 +15,21 @@ ___Slitaz___:
 
 1. Primero creamos el disco duro con la siguiente orden:
 
-![Sin titulo](Imagenes_T5/2.png)
+    ![Sin titulo](Imagenes_T5/2.png)
 
 2. Instalamos la imagen de "slitaz", para ello, es necesario tener una iso del SO que vamos a instalar, después lo lanzamos:
 
-![Sin titulo](Imagenes_T5/3.png)
+    ![Sin titulo](Imagenes_T5/3.png)
 
 ___damnsmall___:
 
 1. Primero creamos el disco duro con la siguiente orden:
 
-![Sin titulo](Imagenes_T5/4.png)
+    ![Sin titulo](Imagenes_T5/4.png)
 
 2. Instalamos la imagen de "damnsmall", para ello, es necesario tener una iso del SO que vamos a instalar, después lo lanzamos:
 
-![Sin titulo](Imagenes_T5/5.png)
+    ![Sin titulo](Imagenes_T5/5.png)
 
 ####2.2. Hacer un ejercicio equivalente usando otro hipervisor como Xen, VirtualBox o Parallels.
 
@@ -37,23 +37,23 @@ Voy a instalar Slitaz, que ya lo tengo descargado.
 
 1. Abro virtualBox y selecciono NUEVA:
 
-![Sin titulo](Imagenes_T5/6.png)
+    ![Sin titulo](Imagenes_T5/6.png)
 
 2. Seleccionamos la memoria:
 
-![Sin titulo](Imagenes_T5/7.png)
+    ![Sin titulo](Imagenes_T5/7.png)
 
 3. Selecciono el tipo de disco duro:
 
-![Sin titulo](Imagenes_T5/8.png)
+    ![Sin titulo](Imagenes_T5/8.png)
 
 4. Añado al controlador la ISO de Slitaz:
 
-![Sin titulo](Imagenes_T5/9.png)
+    ![Sin titulo](Imagenes_T5/9.png)
 
 5. Arrancamos e instalamos el SO:
 
-![Sin titulo](Imagenes_T5/10.png)
+    ![Sin titulo](Imagenes_T5/10.png)
 
 ###3. Crear un benchmark de velocidad de entrada salida y comprobar la diferencia entre usar paravirtualización y arrancar la máquina virtual simplemente con `qemu-system-x86_64 -hda /media/Backup/Isos/discovirtual.img`.
 
@@ -67,7 +67,7 @@ Para este ejercicio he usado el benchmark de [Sysbench](http://www.elmundoenbits
 
           sysbench --test=fileio --file-total-size=5G prepare
 
-![Sin titulo](Imagenes_T5/22.png)
+      ![Sin titulo](Imagenes_T5/22.png)
 
 3. Ejecución de los tests y resultados:
 
@@ -75,13 +75,13 @@ Para este ejercicio he usado el benchmark de [Sysbench](http://www.elmundoenbits
         --file-test-mode=rndrw --init-rng=on \
         --max-time=300 --max-requests=0 run
 
-![Sin titulo](Imagenes_T5/23.png)
+    ![Sin titulo](Imagenes_T5/23.png)
 
 4. Hecho esto limpiamos el espacio ocupado:
 
         sysbench --test=fileio --file-total-size=5G cleanup
 
-![Sin titulo](Imagenes_T5/24.png)
+    ![Sin titulo](Imagenes_T5/24.png)
 
 Estos pasos han sido realizados en el ordenador local, a continuación realizaré los mismos pasos para la máquina virtual (Ubuntu Server 16):
 
@@ -120,15 +120,15 @@ Instalamos ssh en la maquina virtual y nos conectamos desde el anfitrión, para 
 
 1. Miramos la Ip que tenemos en ubuntu server:
 
-![Sin titulo](Imagenes_T5/12.png)
+    ![Sin titulo](Imagenes_T5/12.png)
 
 2. Vemos que la IP de Ubuntu Server es 10.0.2.6. Ahora vamos a la segunda máquina:
 
-![Sin titulo](Imagenes_T5/13.png)
+    ![Sin titulo](Imagenes_T5/13.png)
 
 3. Por último, para hacer una prueba, abrimos un archivo gedit, denominado "prueba", desde esta máquina:
 
-![Sin titulo](Imagenes_T5/14.png)
+    ![Sin titulo](Imagenes_T5/14.png)
 
 ###5. Crear una máquina virtual ubuntu e instalar en ella alguno de los servicios que estamos usando en el proyecto de la asignatura.
 
