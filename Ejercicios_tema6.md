@@ -19,7 +19,7 @@ Y compruebo la versión que he instalado:
 
 ###3. Desplegar la aplicación de DAI con todos los módulos necesarios usando un playbook de Ansible.
 
-
+Lo he realizado con la practica de IV, y se explica [aquí](https://github.com/rubenjo7/IV#vagrant-y-ansible).
 
 ###4. Instalar una máquina virtual Debian usando Vagrant y conectar con ella.
 
